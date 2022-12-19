@@ -1,6 +1,8 @@
 console.log("JS Loaded");
 
 const newBookTitleSelector = document.querySelector(".h2");
+const pochListSelector = document.getElementById("content");
+
 const divConstructor = document.createElement("div");
 const buttonConstructor = document.createElement("button");
 
@@ -34,17 +36,16 @@ const newForm = () => {
                                 '<input type="text" name="author" id="author-book" required>' +
                                 '</div>' +
                                 '<div class="search-button">' +
-                                '<input type="submit" value="Rechercher">' +
+                                '<input id="submitFormId" type="submit" value="Rechercher">' +
                                 '</div>' + 
                                 '</form>';
     
     newBookTitleSelector.appendChild(divForForm).appendChild(cancelButton);
+    submitFormHandler();
     removeForm();  
 }
 
 // function to go back to "Ajouter un livre"
-
-
 const removeForm = () => {
     const formDivSelector = document.getElementById("formId");
     const cancelButtonSelector = document.querySelector(".button-cancel-search");
@@ -54,6 +55,40 @@ const removeForm = () => {
     });
  }
 
+// fuction to call Google Books API
+const submitFormHandler = () => {
+    const submitFormSelector = document.getElementById("submitFormId");
+    submitFormSelector.addEventListener("click", () => {
+        event.preventDefault();    
+
+        const searchTitle = document.getElementById("title-book").value;
+        const searchAuthor = document.getElementById("author-book").value;
+
+        fetch("https://www.googleapis.com/books/v1/volumes?q="+searchTitle + "+inauthor:" + searchAuthor + "&key=AIzaSyDzdYQ_1JzwMurPc64t9N65-aGIQQiaGSw")
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                handleResults(data);
+            })
+    })
+}
+
+// function to handle response from Google Books API and create according div
+const handleResults = async(bookResultsAPI) => {
+    if (bookResultsAPI.totalItems === 0) {
+        alert("Aucun livre n'a été trouvé");
+    } else {
+        bookResultsAPI.items.forEach(bookResult => {
+            console.log(bookResult.volumeInfo.title)
+            const divForCard = document.createElement("div");
+            divForCard.innerHTML = '<div class="title-of-book">' + bookResult.volumeInfo.title +'</div>' +
+                                    '<div class="author-of-book">' + bookResult.volumeInfo.authors +'</div>' ;
+                                    console.log("pochListSelector", pochListSelector)
+            pochListSelector.append(divForCard);    
+        })
+    }
+}
 // function to remove button "Ajouter un livre"
 const removeButtonAddABook = () => {
     addABookDivSelector.remove();

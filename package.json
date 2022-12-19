@@ -1,0 +1,22 @@
+{
+  "name": "poch_lib",
+  "version": "1.0.0",
+  "description": "To complete",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShiKaNaa/-Poch_Lib.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShiKaNaa/-Poch_Lib/issues"
+  },
+  "homepage": "https://github.com/ShiKaNaa/-Poch_Lib#readme",
+  "dependencies": {
+    "sass": "^1.57.0"
+  }
+}

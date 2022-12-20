@@ -1,4 +1,12 @@
 h1 {
   color: yellow;
   background-color: blueviolet;
+}
+
+.card-container-result {
+  display: flex;
+}
+.card-container-result .img-of-book {
+  width: 150px;
+  height: 150px;
 }/*# sourceMappingURL=index.css.map */

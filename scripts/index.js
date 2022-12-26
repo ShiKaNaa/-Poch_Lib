@@ -129,7 +129,7 @@ const addEventListenerToBookmark = (bookmarksSelector) => {
     })
 }
 
-// function to handle click from
+// function to handle click from BookmarkIcon
 const handleClickFromBookmarkIcon = () => {
     let dataFromDiv = event.target.parentNode.parentNode.parentNode;
 

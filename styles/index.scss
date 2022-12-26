@@ -10,7 +10,7 @@ h1 {
     grid-template-columns: repeat(3, 1fr);
 }
 
-.card-container-result {
+.card-container-result, .card-container-bookmarked{
     display: flex;
     flex-direction: column;
     border: solid black;

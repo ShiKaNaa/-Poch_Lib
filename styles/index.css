@@ -1,6 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap");
+* {
+  font-family: roboto;
+}
+
+hr {
+  margin: 15px 0;
+}
+
 h1 {
-  color: yellow;
-  background-color: blueviolet;
+  background-color: rgba(226, 226, 226, 0.705);
+  padding: 10px;
+  font-size: medium;
+  font-weight: 400;
+  text-align: center;
+  border-bottom: solid rgb(190, 190, 190);
+}
+
+h2 {
+  text-align: center;
+  margin-top: 0;
+}
+h2 .button-add-book {
+  text-align: center;
+  background-color: rgb(93, 187, 140);
+  padding: 10px 25px;
+  margin-top: 15px;
 }
 
 .cards-wrapper {

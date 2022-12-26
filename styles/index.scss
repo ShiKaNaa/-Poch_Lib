@@ -1,9 +1,38 @@
-// @import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Basic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
 
-h1 {
-    color: yellow;
-    background-color: blueviolet;
+$green: rgb(93, 187, 140);
+$light-grey: rgba(226, 226, 226, 0.705);
+$grey: rgb(190, 190, 190);
+
+* {
+    font-family: roboto;
 }
+
+hr {
+    margin: 15px 0;
+}
+h1 {
+    background-color: $light-grey;
+    padding: 10px;
+    font-size: medium;
+    font-weight: 400;
+    text-align: center;
+    border-bottom: solid $grey;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 0;
+
+    .button-add-book {
+        text-align: center;
+        background-color: $green;
+        padding: 10px 25px;
+        margin-top: 15px;
+    }
+}
+
+
 
 .cards-wrapper {
     display: grid;

@@ -31,17 +31,26 @@ h2 .button-add-book {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
+#content h2 {
+  grid-column: span 3;
+}
 
 @media screen and (max-width: 900px) {
   #content {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
+  #content h2 {
+    grid-column: span 2;
+  }
 }
 @media screen and (max-width: 600px) {
   #content {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
+  }
+  #content h2 {
+    grid-column: span 1;
   }
 }
 .card-container-result, .card-container-bookmarked {

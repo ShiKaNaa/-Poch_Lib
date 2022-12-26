@@ -37,12 +37,25 @@ h2 {
 #content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+
+    h2 {
+        grid-column: span 3;
+    }
 }
+
+// #content h2:first-child {
+//     grid-row: span 3;
+//     grid-column: span 3;
+// }
 
 @media screen and (max-width: 900px) {
     #content {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+
+        h2 {
+            grid-column: span 2;
+        }
     }
 }
 
@@ -50,6 +63,10 @@ h2 {
     #content {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
+
+        h2 {
+            grid-column: span 1;
+        }
     }
 }
 

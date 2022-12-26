@@ -21,14 +21,15 @@ const cardForSavedBookmarks = () => {
         divForPochList.classList.add("card-container-bookmarked");
         divForPochList.id = sessionStorageBooks.id;
 
+        let imgCover = sessionStorageBooks.image ? sessionStorageBooks.image : "./img/unavailable.png";
         divForPochList.innerHTML = '<div class="title-bookmark-container" id="'+ sessionStorageBooks.title + '" >' +
-                                    '<div class="title-of-book"> Titre : ' + sessionStorageBooks.title +'</div>' +
-                                    '<button type="button"><i class="fa-regular fa-trash-can"></i></button>' +    
+                                        '<div class="title-of-book"> Titre : ' + sessionStorageBooks.title +'</div>' +
+                                        '<button type="button"><i class="fa-regular fa-trash-can"></i></button>' +    
                                     '</div>' + 
                                     '<div class="id-of-book"> Id : ' + sessionStorageBooks.id +'</div>' +
                                     '<div class="author-of-book" id="' + sessionStorageBooks.author + '"> Auteur : ' + sessionStorageBooks.author +'</div>' +
                                     '<div class="description-of-book"> Description ' + sessionStorageBooks.description + '...' +'</div>' +
-                                    `<img class="img-of-book" src=${sessionStorageBooks.image} alt="image cover of book"></img>` ;
+                                    '<div class="img-container">' + `<img class="img-of-book" src=${imgCover} alt="image cover of book"></img>` + '</div>';
         pochListSelector.append(divForPochList);
     })
     const trashCanSelectorAftersubmit = document.querySelectorAll(".fa-trash-can");
@@ -69,11 +70,11 @@ const newForm = () => {
     // penser à supprimer les value="harry" et "rowling"
     divForForm.innerHTML = '<form action="" method="get" class="form-example">' + 
                                 '<div class="title-of-book">' +
-                                    '<label for="title">Titre du livre</label>'+
+                                    '<label for="title">Titre du livre </label>'+
                                     '<input type="text" name="title" id="title-book" value="harry" required>' +
                                 '</div>' +
                                 '<div class="author-of-book">' +
-                                    '<label for="author">Auteur</label>' +
+                                    '<label for="author">Auteur </label>' +
                                     '<input type="text" name="author" id="author-book" value="rowling" required>' +
                                 '</div>' +
                                 '<div class="search-button">' +
@@ -149,7 +150,7 @@ const handleResults = (bookResultsAPI) => {
                                     '<div class="id-of-book"> Id : ' + bookResult.id +'</div>' +
                                     '<div class="author-of-book" id="' + bookAuthour + '"> Auteur : ' + bookAuthour +'</div>' +
                                     '<div class="description-of-book"> Description ' + bookDescription + '...' +'</div>' +
-                                    `<img class="img-of-book" src=${bookCover} alt="image cover of book"></img>` ;
+                                    '<div class="img-container">' + `<img class="img-of-book" src=${bookCover} alt="image cover of book"></img>` + '</div>';
             pochListSelector.prepend(divForCard); 
             const bookmarksSelectorAftersubmit = document.querySelectorAll(".fa-bookmark");
             addEventListenerToBookmark(bookmarksSelectorAftersubmit);

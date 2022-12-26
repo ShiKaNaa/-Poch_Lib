@@ -27,21 +27,36 @@ h2 .button-add-book {
   margin-top: 15px;
 }
 
-.cards-wrapper {
+#content {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
 
+@media screen and (max-width: 900px) {
+  #content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 600px) {
+  #content {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
 .card-container-result, .card-container-bookmarked {
   display: flex;
   flex-direction: column;
   border: solid black;
-  height: 225px;
-  width: 350px;
+  width: auto;
+  padding: 25px;
+  margin: 25px;
 }
-.card-container-result .img-of-book, .card-container-bookmarked .img-of-book {
-  width: 150px;
-  height: 150px;
+.card-container-result .img-container .img-of-book, .card-container-bookmarked .img-container .img-of-book {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .card-container-result .title-bookmark-container, .card-container-bookmarked .title-bookmark-container {
   display: flex;

@@ -22,8 +22,32 @@ h2 {
 }
 h2 .button-add-book {
   text-align: center;
-  background-color: rgb(93, 187, 140);
+  background-color: rgb(0, 170, 113);
   padding: 10px 25px;
+  margin-top: 15px;
+}
+
+#formId {
+  text-align: left;
+}
+
+#submitFormId {
+  color: white;
+  background-color: rgb(0, 170, 113);
+  padding: 10px 45px;
+  border: transparent;
+  border-radius: 2px;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.button-cancel-search {
+  color: white;
+  background-color: rgb(253, 75, 75);
+  padding: 10px 56px;
+  border: transparent;
+  border-radius: 2px;
+  margin-left: 15px;
   margin-top: 15px;
 }
 
@@ -33,6 +57,12 @@ h2 .button-add-book {
 }
 #content h2 {
   grid-column: span 3;
+}
+
+.author-of-book, .title-of-book {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
 }
 
 @media screen and (max-width: 900px) {

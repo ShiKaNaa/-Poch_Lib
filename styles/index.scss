@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
 
-$green: rgb(93, 187, 140);
+$green: rgb(0, 170, 113);
 $light-grey: rgba(226, 226, 226, 0.705);
 $grey: rgb(190, 190, 190);
+$white: white;
+$red: rgb(253, 75, 75);
 
 * {
     font-family: roboto;
@@ -34,6 +36,30 @@ h2 {
     }
 }
 
+#formId {
+    text-align: left;
+}
+
+#submitFormId {
+    color: $white;
+    background-color: $green;
+    padding: 10px 45px;
+    border: transparent;   
+    border-radius: 2px;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.button-cancel-search {
+    color: $white;
+    background-color: $red;
+    padding: 10px 56px;
+    border: transparent;
+    border-radius: 2px;
+    margin-left: 15px;
+    margin-top: 15px;    
+}
+
 #content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -43,10 +69,11 @@ h2 {
     }
 }
 
-// #content h2:first-child {
-//     grid-row: span 3;
-//     grid-column: span 3;
-// }
+.author-of-book, .title-of-book {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
 
 @media screen and (max-width: 900px) {
     #content {

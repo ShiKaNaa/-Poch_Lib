@@ -1,5 +1,6 @@
 console.log("JS Loaded");
 
+
 const newBookTitleSelector = document.querySelector(".h2");
 const pochListSelector = document.getElementById("content");
 
@@ -13,6 +14,32 @@ const createButtonAddABook = () => {
 }
 
 createButtonAddABook();
+
+// function to create card at load
+const cardForSavedBookmarks = () => {
+    Object.keys(sessionStorage).forEach(key => {
+        let sessionStorageBooks = JSON.parse(sessionStorage.getItem(key));
+        const divForPochList = document.createElement("div");
+
+        divForPochList.classList.add("card-container-result");
+        divForPochList.id = sessionStorageBooks.id;
+
+        divForPochList.innerHTML = '<div class="title-bookmark-container" id="'+ sessionStorageBooks.title + '" >' +
+                                    '<div class="title-of-book"> Titre : ' + sessionStorageBooks.title +'</div>' +
+                                    '<button type="button"><i class="fa-regular fa-trash-can"></i></button>' +    
+                                    '</div>' + 
+                                    '<div class="id-of-book"> Id : ' + sessionStorageBooks.id +'</div>' +
+                                    '<div class="author-of-book" id="' + sessionStorageBooks.author+ '"> Auteur : ' + sessionStorageBooks.author +'</div>' +
+                                    '<div class="description-of-book"> Description ' + sessionStorageBooks.description + '...' +'</div>' +
+                                    `<img class="img-of-book" src=${sessionStorageBooks.image} alt="image cover of book"></img>` ;
+        pochListSelector.append(divForPochList); 
+    })
+}
+
+if(sessionStorage.length > 0) {
+    cardForSavedBookmarks();
+}
+
 
 const searchForm = () => {
     addABookDivSelector.addEventListener("click", newForm);
@@ -53,6 +80,7 @@ const removeForm = () => {
         formDivSelector.remove();
         removeResultsCards();
         createButtonAddABook();
+        cardForSavedBookmarks();
     });
  }
 
@@ -104,10 +132,10 @@ const handleResults = (bookResultsAPI) => {
                                         '<button type="button"><i class="fa-regular fa-bookmark"></i></button>' +    
                                     '</div>' + 
                                     '<div class="id-of-book"> Id : ' + bookResult.id +'</div>' +
-                                    '<div class="author-of-book" id="' + bookResult.volumeInfo.authors+ '"> Auteur : ' + bookResult.volumeInfo.authors +'</div>' +
-                                    '<div class="description-of-book"> Description' + bookDescription + '...' +'</div>' +
+                                    '<div class="author-of-book" id="' + bookResult.volumeInfo.authors[0]+ '"> Auteur : ' + bookResult.volumeInfo.authors[0] +'</div>' +
+                                    '<div class="description-of-book"> Description ' + bookDescription + '...' +'</div>' +
                                     `<img class="img-of-book" src=${bookCover} alt="image cover of book"></img>` ;
-            pochListSelector.append(divForCard); 
+            pochListSelector.prepend(divForCard); 
 
             const bookmarksSelectorAftersubmit = document.querySelectorAll(".fa-bookmark");
             addEventListenerToBookmark(bookmarksSelectorAftersubmit);
@@ -132,7 +160,7 @@ const addEventListenerToBookmark = (bookmarksSelector) => {
 // function to handle click from BookmarkIcon
 const handleClickFromBookmarkIcon = () => {
     let dataFromDiv = event.target.parentNode.parentNode.parentNode;
-
+    let dataForPochListCard = dataFromDiv.cloneNode(true);
     if(sessionStorage.getItem(dataFromDiv.id)) {
         alert("Vous ne pouvez ajouter deux fois le même livre");
     } else {
@@ -144,7 +172,15 @@ const handleClickFromBookmarkIcon = () => {
             image : dataFromDiv.children[4].currentSrc
         }
         sessionStorage.setItem(dataFromDiv.id, JSON.stringify(book));
+        dataForPochListCard.firstChild.children[1].innerHTML = '<i class="fa-regular fa-trash-can"></i>';
+        pochListSelector.append(dataForPochListCard);
+        // createPochListCard(book);  
     }
 }
+
+// const createPochListCard = (dataForPochListCard) => {
+//     console.log("dataForPochListCard", dataForPochListCard)
+//     // pochListSelector.append(dataForPochListCard);
+// }
 
 searchForm();

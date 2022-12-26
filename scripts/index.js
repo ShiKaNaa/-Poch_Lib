@@ -1,6 +1,3 @@
-console.log("JS Loaded");
-
-
 const newBookTitleSelector = document.querySelector(".h2");
 const pochListSelector = document.getElementById("content");
 
@@ -32,8 +29,25 @@ const cardForSavedBookmarks = () => {
                                     '<div class="author-of-book" id="' + sessionStorageBooks.author+ '"> Auteur : ' + sessionStorageBooks.author +'</div>' +
                                     '<div class="description-of-book"> Description ' + sessionStorageBooks.description + '...' +'</div>' +
                                     `<img class="img-of-book" src=${sessionStorageBooks.image} alt="image cover of book"></img>` ;
-        pochListSelector.append(divForPochList); 
+        pochListSelector.append(divForPochList);
     })
+    const trashCanSelectorAftersubmit = document.querySelectorAll(".fa-trash-can");
+    addEventListenerToTrashCan(trashCanSelectorAftersubmit); 
+}
+
+// function to add event listener to each trash can icon
+const addEventListenerToTrashCan = (trashCansIcons) => {
+    trashCansIcons.forEach(icon => {
+        icon.addEventListener("click", removeBookmark)
+    })
+}
+
+// fuction to remove bookmark to poch liste
+const removeBookmark = () => {
+    let dataFromDiv = event.target.parentNode.parentNode.parentNode;
+    // console.log("dataFromDiv", dataFromDiv.id)
+    sessionStorage.removeItem(dataFromDiv.id);
+    dataFromDiv.remove()
 }
 
 if(sessionStorage.length > 0) {
@@ -117,6 +131,7 @@ const submitFormHandler = () => {
 
 // function to handle response from Google Books API and create according div
 const handleResults = (bookResultsAPI) => {
+    const resultsWrapper = document.createElement("div");
     if (bookResultsAPI.totalItems === 0) {
         alert("Aucun livre n'a été trouvé");
     } else {
@@ -136,11 +151,11 @@ const handleResults = (bookResultsAPI) => {
                                     '<div class="description-of-book"> Description ' + bookDescription + '...' +'</div>' +
                                     `<img class="img-of-book" src=${bookCover} alt="image cover of book"></img>` ;
             pochListSelector.prepend(divForCard); 
-
             const bookmarksSelectorAftersubmit = document.querySelectorAll(".fa-bookmark");
             addEventListenerToBookmark(bookmarksSelectorAftersubmit);
         })
     }
+
 }
 
 // function to remove button "Ajouter un livre"
@@ -174,13 +189,8 @@ const handleClickFromBookmarkIcon = () => {
         sessionStorage.setItem(dataFromDiv.id, JSON.stringify(book));
         dataForPochListCard.firstChild.children[1].innerHTML = '<i class="fa-regular fa-trash-can"></i>';
         pochListSelector.append(dataForPochListCard);
-        // createPochListCard(book);  
+        addEventListenerToTrashCan([dataForPochListCard]);
     }
 }
-
-// const createPochListCard = (dataForPochListCard) => {
-//     console.log("dataForPochListCard", dataForPochListCard)
-//     // pochListSelector.append(dataForPochListCard);
-// }
 
 searchForm();

@@ -18,7 +18,7 @@ const cardForSavedBookmarks = () => {
         let sessionStorageBooks = JSON.parse(sessionStorage.getItem(key));
         const divForPochList = document.createElement("div");
 
-        divForPochList.classList.add("card-container-result");
+        divForPochList.classList.add("card-container-bookmarked");
         divForPochList.id = sessionStorageBooks.id;
 
         divForPochList.innerHTML = '<div class="title-bookmark-container" id="'+ sessionStorageBooks.title + '" >' +
@@ -26,7 +26,7 @@ const cardForSavedBookmarks = () => {
                                     '<button type="button"><i class="fa-regular fa-trash-can"></i></button>' +    
                                     '</div>' + 
                                     '<div class="id-of-book"> Id : ' + sessionStorageBooks.id +'</div>' +
-                                    '<div class="author-of-book" id="' + sessionStorageBooks.author+ '"> Auteur : ' + sessionStorageBooks.author +'</div>' +
+                                    '<div class="author-of-book" id="' + sessionStorageBooks.author + '"> Auteur : ' + sessionStorageBooks.author +'</div>' +
                                     '<div class="description-of-book"> Description ' + sessionStorageBooks.description + '...' +'</div>' +
                                     `<img class="img-of-book" src=${sessionStorageBooks.image} alt="image cover of book"></img>` ;
         pochListSelector.append(divForPochList);
@@ -45,7 +45,6 @@ const addEventListenerToTrashCan = (trashCansIcons) => {
 // fuction to remove bookmark to poch liste
 const removeBookmark = () => {
     let dataFromDiv = event.target.parentNode.parentNode.parentNode;
-    // console.log("dataFromDiv", dataFromDiv.id)
     sessionStorage.removeItem(dataFromDiv.id);
     dataFromDiv.remove()
 }
@@ -94,7 +93,8 @@ const removeForm = () => {
         formDivSelector.remove();
         removeResultsCards();
         createButtonAddABook();
-        cardForSavedBookmarks();
+        // vérifier si fonctionne tjrs avec ligne du dessous commenté, sinon créer une fonctio qui va supprimer les cards bookmarké
+        // cardForSavedBookmarks();
     });
  }
 
@@ -116,6 +116,7 @@ const submitFormHandler = () => {
         const searchAuthor = document.getElementById("author-book").value;
 
         if (searchTitle && searchAuthor ) {
+            removeResultsCards();
             fetch("https://www.googleapis.com/books/v1/volumes?q="+searchTitle + "+inauthor:" + searchAuthor + "&key=AIzaSyDzdYQ_1JzwMurPc64t9N65-aGIQQiaGSw")
                 .then(response => {
                     return response.json();
@@ -131,14 +132,13 @@ const submitFormHandler = () => {
 
 // function to handle response from Google Books API and create according div
 const handleResults = (bookResultsAPI) => {
-    const resultsWrapper = document.createElement("div");
     if (bookResultsAPI.totalItems === 0) {
         alert("Aucun livre n'a été trouvé");
     } else {
         bookResultsAPI.items.forEach(bookResult => {
-
             const bookCover = bookResult.volumeInfo.imageLinks ? bookResult.volumeInfo.imageLinks.smallThumbnail : "./img/unavailable.png";
             const bookDescription = bookResult.volumeInfo.description ? bookResult.volumeInfo.description.slice(0,200) : "Information manquante";
+            const bookAuthour = bookResult.volumeInfo.authors ? bookResult.volumeInfo.authors[0] : "Auteur inconnu";
             const divForCard = document.createElement("div");
             divForCard.classList.add("card-container-result");
             divForCard.id = bookResult.id;
@@ -147,7 +147,7 @@ const handleResults = (bookResultsAPI) => {
                                         '<button type="button"><i class="fa-regular fa-bookmark"></i></button>' +    
                                     '</div>' + 
                                     '<div class="id-of-book"> Id : ' + bookResult.id +'</div>' +
-                                    '<div class="author-of-book" id="' + bookResult.volumeInfo.authors[0]+ '"> Auteur : ' + bookResult.volumeInfo.authors[0] +'</div>' +
+                                    '<div class="author-of-book" id="' + bookAuthour + '"> Auteur : ' + bookAuthour +'</div>' +
                                     '<div class="description-of-book"> Description ' + bookDescription + '...' +'</div>' +
                                     `<img class="img-of-book" src=${bookCover} alt="image cover of book"></img>` ;
             pochListSelector.prepend(divForCard); 
@@ -176,6 +176,8 @@ const addEventListenerToBookmark = (bookmarksSelector) => {
 const handleClickFromBookmarkIcon = () => {
     let dataFromDiv = event.target.parentNode.parentNode.parentNode;
     let dataForPochListCard = dataFromDiv.cloneNode(true);
+    dataForPochListCard.classList.remove("card-container-result");
+    dataForPochListCard.classList.add("card-container-bookmarked");
     if(sessionStorage.getItem(dataFromDiv.id)) {
         alert("Vous ne pouvez ajouter deux fois le même livre");
     } else {

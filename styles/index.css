@@ -8,21 +8,21 @@ h1 {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.card-container-result {
+.card-container-result, .card-container-bookmarked {
   display: flex;
   flex-direction: column;
   border: solid black;
   height: 225px;
   width: 350px;
 }
-.card-container-result .img-of-book {
+.card-container-result .img-of-book, .card-container-bookmarked .img-of-book {
   width: 150px;
   height: 150px;
 }
-.card-container-result .title-bookmark-container {
+.card-container-result .title-bookmark-container, .card-container-bookmarked .title-bookmark-container {
   display: flex;
   justify-content: space-between;
 }
-.card-container-result .title-bookmark-container .fa-bookmark {
+.card-container-result .title-bookmark-container .fa-bookmark, .card-container-bookmarked .title-bookmark-container .fa-bookmark {
   color: rgb(1, 71, 1);
 }/*# sourceMappingURL=index.css.map */

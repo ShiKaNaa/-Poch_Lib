@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
 
-$green: rgb(0, 170, 113);
-$light-grey: rgba(226, 226, 226, 0.705);
+$green: rgb(28, 143, 104);
+$light-grey: rgba(236, 236, 236, 0.705);
 $grey: rgb(190, 190, 190);
 $white: white;
-$red: rgb(253, 75, 75);
+$red: rgb(231, 69, 69);
 
 * {
     font-family: roboto;
@@ -17,6 +17,7 @@ hr {
 
 h1 {
     background-color: $light-grey;
+    border-radius: 3px;
     padding: 10px;
     font-size: medium;
     font-weight: 400;
@@ -26,13 +27,18 @@ h1 {
 
 h2 {
     text-align: center;
+    font-weight: bold;
+    font-size: medium;
     margin-top: 0;
 
     .button-add-book {
         text-align: center;
+        color: $white;
         background-color: $green;
         padding: 10px 25px;
         margin-top: 15px;
+        border-radius: 3px;
+        border: transparent;
     }
 }
 
@@ -46,7 +52,7 @@ h2 {
     padding: 10px 45px;
     border: transparent;   
     border-radius: 2px;
-    margin-left: 15px;
+    // margin-left: 15px;
     margin-top: 15px;
 }
 
@@ -56,7 +62,7 @@ h2 {
     padding: 10px 56px;
     border: transparent;
     border-radius: 2px;
-    margin-left: 15px;
+    // margin-left: 15px;
     margin-top: 15px;    
 }
 
@@ -69,10 +75,18 @@ h2 {
     }
 }
 
+.title-of-book, .id-of-book {
+    font-weight: bold;
+}
+
 .author-of-book, .title-of-book {
     display: flex;
     flex-direction: column;
-    padding: 15px;
+    padding: 15px 0;
+
+    label {
+        margin-bottom: 8px;
+    }
 }
 
 @media screen and (max-width: 900px) {
@@ -100,7 +114,8 @@ h2 {
 .card-container-result, .card-container-bookmarked{
     display: flex;
     flex-direction: column;
-    border: solid black;
+    border: solid 1px black;
+    background-color: $light-grey;
     width: auto;
     padding: 25px;
     margin: 25px;
@@ -113,15 +128,23 @@ h2 {
             object-fit: cover;
         }
     }
-    
 
     .title-bookmark-container {
         display: flex;
         justify-content: space-between;
 
-        .fa-bookmark {
-            color: rgb(1, 71, 1);
+        .fa-bookmark, .fa-trash {
+            font-size: xx-large;
+            color: $green;
         }
+
+        button {
+            border: transparent;
+        }
+    }
+
+    .description-of-book {
+        padding-bottom: 15px;
     }
  
 }

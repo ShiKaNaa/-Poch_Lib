@@ -24,7 +24,7 @@ const cardForSavedBookmarks = () => {
         let imgCover = sessionStorageBooks.image ? sessionStorageBooks.image : "./img/unavailable.png";
         divForPochList.innerHTML = '<div class="title-bookmark-container" id="'+ sessionStorageBooks.title + '" >' +
                                         '<div class="title-of-book"> Titre : ' + sessionStorageBooks.title +'</div>' +
-                                        '<button type="button"><i class="fa-regular fa-trash-can"></i></button>' +    
+                                        '<button type="button"><i class="fa-solid fa-trash"></i></button>' +    
                                     '</div>' + 
                                     '<div class="id-of-book"> Id : ' + sessionStorageBooks.id +'</div>' +
                                     '<div class="author-of-book" id="' + sessionStorageBooks.author + '"> Auteur : ' + sessionStorageBooks.author +'</div>' +
@@ -145,7 +145,7 @@ const handleResults = (bookResultsAPI) => {
             divForCard.id = bookResult.id;
             divForCard.innerHTML = '<div class="title-bookmark-container" id="'+ bookResult.volumeInfo.title + '" >' +
                                         '<div class="title-of-book"> Titre : ' + bookResult.volumeInfo.title +'</div>' +
-                                        '<button type="button"><i class="fa-regular fa-bookmark"></i></button>' +    
+                                        '<button type="button"><i class="fa-solid fa-bookmark"></i></i></button>' +    
                                     '</div>' + 
                                     '<div class="id-of-book"> Id : ' + bookResult.id +'</div>' +
                                     '<div class="author-of-book" id="' + bookAuthour + '"> Auteur : ' + bookAuthour +'</div>' +
@@ -190,7 +190,7 @@ const handleClickFromBookmarkIcon = () => {
             image : dataFromDiv.children[4].currentSrc
         }
         sessionStorage.setItem(dataFromDiv.id, JSON.stringify(book));
-        dataForPochListCard.firstChild.children[1].innerHTML = '<i class="fa-regular fa-trash-can"></i>';
+        dataForPochListCard.firstChild.children[1].innerHTML = '<i class="fa-solid fa-trash"></i>';
         pochListSelector.append(dataForPochListCard);
         addEventListenerToTrashCan([dataForPochListCard]);
     }

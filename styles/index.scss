@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
 
-$green: rgb(28, 143, 104);
+$light-green: rgb(28, 143, 104);
+$green: rgb(28, 128, 94);
 $light-grey: rgba(236, 236, 236, 0.705);
 $grey: rgb(190, 190, 190);
+$dark-grey: #d1cfcf;
 $white: white;
 $red: rgb(231, 69, 69);
 
@@ -34,7 +36,7 @@ h2 {
     .button-add-book {
         text-align: center;
         color: $white;
-        background-color: $green;
+        background-color: $light-green;
         padding: 10px 25px;
         margin-top: 15px;
         border-radius: 3px;
@@ -48,7 +50,7 @@ h2 {
 
 #submitFormId {
     color: $white;
-    background-color: $green;
+    background-color: $light-green;
     padding: 10px 45px;
     border: transparent;   
     border-radius: 2px;
@@ -77,6 +79,10 @@ h2 {
 
 .title-of-book, .id-of-book {
     font-weight: bold;
+}
+
+.id-of-book {
+    font-style: italic;
 }
 
 .author-of-book, .title-of-book {
@@ -115,7 +121,7 @@ h2 {
     display: flex;
     flex-direction: column;
     border: solid 1px black;
-    background-color: $light-grey;
+    background-color: $dark-grey;
     width: auto;
     padding: 25px;
     margin: 25px;
@@ -135,11 +141,16 @@ h2 {
 
         .fa-bookmark, .fa-trash {
             font-size: xx-large;
+            color: $light-green;
+        }
+
+        .fa-bookmark:hover, .fa-trash:hover {
             color: $green;
         }
 
         button {
             border: transparent;
+            background-color: $dark-grey;
         }
     }
 

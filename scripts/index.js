@@ -28,11 +28,11 @@ const cardForSavedBookmarks = () => {
                                     '</div>' + 
                                     '<div class="id-of-book"> Id : ' + sessionStorageBooks.id +'</div>' +
                                     '<div class="author-of-book" id="' + sessionStorageBooks.author + '"> Auteur : ' + sessionStorageBooks.author +'</div>' +
-                                    '<div class="description-of-book"> Description ' + sessionStorageBooks.description + '...' +'</div>' +
+                                    '<div class="description-of-book"> Description : ' + sessionStorageBooks.description + '...' +'</div>' +
                                     '<div class="img-container">' + `<img class="img-of-book" src=${imgCover} alt="image cover of book"></img>` + '</div>';
         pochListSelector.append(divForPochList);
     })
-    const trashCanSelectorAftersubmit = document.querySelectorAll(".fa-trash-can");
+    const trashCanSelectorAftersubmit = document.querySelectorAll(".fa-trash");
     addEventListenerToTrashCan(trashCanSelectorAftersubmit); 
 }
 
@@ -71,11 +71,11 @@ const newForm = () => {
     divForForm.innerHTML = '<form action="" method="get" class="form-example">' + 
                                 '<div class="title-of-book">' +
                                     '<label for="title">Titre du livre </label>'+
-                                    '<input type="text" name="title" id="title-book" value="harry" required>' +
+                                    '<input type="text" name="title" id="title-book" value="" placeholder="Seigneur des Anneaux" required>' +
                                 '</div>' +
                                 '<div class="author-of-book">' +
                                     '<label for="author">Auteur </label>' +
-                                    '<input type="text" name="author" id="author-book" value="rowling" required>' +
+                                    '<input type="text" name="author" id="author-book" value="" placeholder="Tolkien" required>' +
                                 '</div>' +
                                 '<div class="search-button">' +
                                     '<input id="submitFormId" type="submit" value="Rechercher">' +
@@ -149,7 +149,7 @@ const handleResults = (bookResultsAPI) => {
                                     '</div>' + 
                                     '<div class="id-of-book"> Id : ' + bookResult.id +'</div>' +
                                     '<div class="author-of-book" id="' + bookAuthour + '"> Auteur : ' + bookAuthour +'</div>' +
-                                    '<div class="description-of-book"> Description ' + bookDescription + '...' +'</div>' +
+                                    '<div class="description-of-book"> Description : ' + bookDescription + '...' +'</div>' +
                                     '<div class="img-container">' + `<img class="img-of-book" src=${bookCover} alt="image cover of book"></img>` + '</div>';
             pochListSelector.prepend(divForCard); 
             const bookmarksSelectorAftersubmit = document.querySelectorAll(".fa-bookmark");
@@ -187,7 +187,7 @@ const handleClickFromBookmarkIcon = () => {
             id : dataFromDiv.id,
             author : dataFromDiv.children[2].id,
             description : dataFromDiv.children[3].innerText,
-            image : dataFromDiv.children[4].currentSrc
+            image : dataFromDiv.children[4].children[0].currentSrc
         }
         sessionStorage.setItem(dataFromDiv.id, JSON.stringify(book));
         dataForPochListCard.firstChild.children[1].innerHTML = '<i class="fa-solid fa-trash"></i>';

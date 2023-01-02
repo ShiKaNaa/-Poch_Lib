@@ -67,6 +67,10 @@ h2 .button-add-book {
   font-weight: bold;
 }
 
+.id-of-book {
+  font-style: italic;
+}
+
 .author-of-book, .title-of-book {
   display: flex;
   flex-direction: column;
@@ -98,7 +102,7 @@ h2 .button-add-book {
   display: flex;
   flex-direction: column;
   border: solid 1px black;
-  background-color: rgba(236, 236, 236, 0.705);
+  background-color: #d1cfcf;
   width: auto;
   padding: 25px;
   margin: 25px;
@@ -117,8 +121,12 @@ h2 .button-add-book {
   font-size: xx-large;
   color: rgb(28, 143, 104);
 }
+.card-container-result .title-bookmark-container .fa-bookmark:hover, .card-container-result .title-bookmark-container .fa-trash:hover, .card-container-bookmarked .title-bookmark-container .fa-bookmark:hover, .card-container-bookmarked .title-bookmark-container .fa-trash:hover {
+  color: rgb(28, 128, 94);
+}
 .card-container-result .title-bookmark-container button, .card-container-bookmarked .title-bookmark-container button {
   border: transparent;
+  background-color: #d1cfcf;
 }
 .card-container-result .description-of-book, .card-container-bookmarked .description-of-book {
   padding-bottom: 15px;

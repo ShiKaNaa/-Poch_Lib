@@ -187,7 +187,7 @@ const handleClickFromBookmarkIcon = () => {
             id : dataFromDiv.id,
             author : dataFromDiv.children[2].id,
             description : dataFromDiv.children[3].innerText,
-            image : dataFromDiv.children[4].currentSrc
+            image : dataFromDiv.children[4].children[0].currentSrc
         }
         sessionStorage.setItem(dataFromDiv.id, JSON.stringify(book));
         dataForPochListCard.firstChild.children[1].innerHTML = '<i class="fa-solid fa-trash"></i>';

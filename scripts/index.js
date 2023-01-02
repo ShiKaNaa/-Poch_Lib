@@ -32,7 +32,7 @@ const cardForSavedBookmarks = () => {
                                     '<div class="img-container">' + `<img class="img-of-book" src=${imgCover} alt="image cover of book"></img>` + '</div>';
         pochListSelector.append(divForPochList);
     })
-    const trashCanSelectorAftersubmit = document.querySelectorAll(".fa-trash-can");
+    const trashCanSelectorAftersubmit = document.querySelectorAll(".fa-trash");
     addEventListenerToTrashCan(trashCanSelectorAftersubmit); 
 }
 

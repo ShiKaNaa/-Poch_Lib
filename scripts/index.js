@@ -67,7 +67,6 @@ const newForm = () => {
     cancelButton.innerText = "Annuler";
     cancelButton.classList.add("button-cancel-search");
     divForForm.id = "formId";
-    // penser à supprimer les value="harry" et "rowling"
     divForForm.innerHTML = '<form action="" method="get" class="form-example">' + 
                                 '<div class="title-of-book">' +
                                     '<label for="title">Titre du livre </label>'+
@@ -94,8 +93,6 @@ const removeForm = () => {
         formDivSelector.remove();
         removeResultsCards();
         createButtonAddABook();
-        // vérifier si fonctionne tjrs avec ligne du dessous commenté, sinon créer une fonctio qui va supprimer les cards bookmarké
-        // cardForSavedBookmarks();
     });
  }
 
